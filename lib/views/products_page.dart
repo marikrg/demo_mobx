@@ -30,7 +30,7 @@ class ProductsPage extends StatelessWidget {
         cacheExtent: 20.0,
         controller: ScrollController(),
         padding: const EdgeInsets.symmetric(vertical: 16),
-        itemBuilder: (context, index) => ProductItemWidget(index),
+        itemBuilder: (context, index) => ProductItemWidget(itemNo: index),
       ),
     );
   }

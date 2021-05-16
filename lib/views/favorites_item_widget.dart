@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class FavoriteItemWidget extends StatelessWidget {
   final int itemNo;
+  final Function functionRemoveItem;
 
   const FavoriteItemWidget(
     this.itemNo,
+    this.functionRemoveItem,
   );
 
   @override
@@ -20,18 +22,9 @@ class FavoriteItemWidget extends StatelessWidget {
           key: Key('favorites_text_$itemNo'),
         ),
         trailing: IconButton(
-          key: Key('remove_icon_$itemNo'),
-          icon: Icon(Icons.close),
-          onPressed: () {
-            // TODO remove favorite
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Removed from favorites.'),
-                duration: Duration(seconds: 1),
-              ),
-            );
-          },
-        ),
+            key: Key('remove_icon_$itemNo'),
+            icon: Icon(Icons.close),
+            onPressed: () => functionRemoveItem(itemNo)),
       ),
     );
   }

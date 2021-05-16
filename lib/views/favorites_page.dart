@@ -12,6 +12,11 @@ class FavoritesPage extends StatefulWidget {
 class _FavoritesPageState extends State<FavoritesPage> {
   Favorites _favorites = Favorites();
 
+  void _removeItem(int itemNo) {
+    _favorites.remove(itemNo);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +28,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
               itemCount: _favorites.items.length,
               padding: const EdgeInsets.symmetric(vertical: 16),
               itemBuilder: (context, index) =>
-                  FavoriteItemWidget(_favorites.items[index]),
+                  FavoriteItemWidget(_favorites.items[index], _removeItem),
             )
           : Center(
               child: Text('No favorites added.'),

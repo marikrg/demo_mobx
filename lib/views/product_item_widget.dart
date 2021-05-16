@@ -1,38 +1,45 @@
 import 'package:demo_mobx/model/favorites.dart';
 import 'package:flutter/material.dart';
 
-class ProductItemWidget extends StatelessWidget {
-  final int itemNo;
+class ProductItemWidget extends StatefulWidget {
+  final itemNo;
 
-  const ProductItemWidget(
-    this.itemNo,
-  );
+  const ProductItemWidget({Key key, this.itemNo}) : super(key: key);
+
+  @override
+  _ProductItemWidgetState createState() => _ProductItemWidgetState();
+}
+
+class _ProductItemWidgetState extends State<ProductItemWidget> {
+  var favoritesList = Favorites();
+
+  void _toggleFavorite() {
+    !favoritesList.items.contains(widget.itemNo)
+        ? favoritesList.add(widget.itemNo)
+        : favoritesList.remove(widget.itemNo);
+
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
-    var favoritesList = Favorites();
-
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: Colors.primaries[itemNo % Colors.primaries.length],
+          backgroundColor:
+              Colors.primaries[widget.itemNo % Colors.primaries.length],
         ),
         title: Text(
-          'Item $itemNo',
-          key: Key('text_$itemNo'),
+          'Item ${widget.itemNo}',
+          key: Key('text_${widget.itemNo}'),
         ),
         trailing: IconButton(
-          key: Key('icon_$itemNo'),
-          icon: favoritesList.items.contains(itemNo)
-              ? Icon(Icons.favorite)
-              : Icon(Icons.favorite_border),
-          onPressed: () {
-            !favoritesList.items.contains(itemNo)
-                ? favoritesList.add(itemNo)
-                : favoritesList.remove(itemNo);
-          },
-        ),
+            key: Key('icon_${widget.itemNo}'),
+            icon: favoritesList.items.contains(widget.itemNo)
+                ? Icon(Icons.favorite)
+                : Icon(Icons.favorite_border),
+            onPressed: _toggleFavorite),
       ),
     );
   }
