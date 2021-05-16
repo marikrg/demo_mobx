@@ -1,6 +1,8 @@
-import 'package:demo_mobx/model/favorites.dart';
+import 'package:demo_mobx/store/favorites_store.dart';
 import 'package:demo_mobx/views/favorites_item_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 
 class FavoritesPage extends StatefulWidget {
   static String routeName = '/favorites_page';
@@ -10,24 +12,24 @@ class FavoritesPage extends StatefulWidget {
 }
 
 class _FavoritesPageState extends State<FavoritesPage> {
-  Favorites _favorites = Favorites();
+  FavoritesStore favoritesStore = GetIt.instance<FavoritesStore>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Favorites'),
-      ),
-      body: _favorites.items.isNotEmpty
-          ? ListView.builder(
-              itemCount: _favorites.items.length,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              itemBuilder: (context, index) =>
-                  FavoriteItemWidget(_favorites.items[index]),
-            )
-          : Center(
-              child: Text('No favorites added.'),
-            ),
-    );
+        appBar: AppBar(
+          title: Text('Favorites'),
+        ),
+        body: Observer(
+            builder: (_) => favoritesStore.favoritesList.isNotEmpty
+                ? ListView.builder(
+                    itemCount: favoritesStore.favoritesList.length,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    itemBuilder: (context, index) =>
+                        FavoriteItemWidget(favoritesStore.favoritesList[index]),
+                  )
+                : Center(
+                    child: Text('No favorites added.'),
+                  )));
   }
 }

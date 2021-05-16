@@ -2,11 +2,16 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'package:demo_mobx/store/favorites_store.dart';
 import 'package:demo_mobx/views/favorites_page.dart';
 import 'package:demo_mobx/views/products_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 void main() {
+  final getIt = GetIt.instance;
+  getIt.registerSingleton<FavoritesStore>(FavoritesStore());
+
   runApp(TestingApp());
 }
 
