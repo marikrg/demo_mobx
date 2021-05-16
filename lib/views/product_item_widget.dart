@@ -31,14 +31,6 @@ class ProductItemWidget extends StatelessWidget {
             !favoritesList.items.contains(itemNo)
                 ? favoritesList.add(itemNo)
                 : favoritesList.remove(itemNo);
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(favoritesList.items.contains(itemNo)
-                    ? 'Added to favorites.'
-                    : 'Removed from favorites.'),
-                duration: Duration(seconds: 1),
-              ),
-            );
           },
         ),
       ),
