@@ -6,9 +6,14 @@ import 'package:demo_mobx/views/favorites_page.dart';
 import 'package:demo_mobx/views/product_item_widget.dart';
 import 'package:flutter/material.dart';
 
-class ProductsPage extends StatelessWidget {
+class ProductsPage extends StatefulWidget {
   static String routeName = '/products';
 
+  @override
+  _ProductsPageState createState() => _ProductsPageState();
+}
+
+class _ProductsPageState extends State<ProductsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +23,8 @@ class ProductsPage extends StatelessWidget {
           TextButton.icon(
             style: TextButton.styleFrom(primary: Colors.white),
             onPressed: () {
-              Navigator.pushNamed(context, FavoritesPage.routeName);
+              Navigator.pushNamed(context, FavoritesPage.routeName)
+                  .then((value) => setState(() => {}));
             },
             icon: Icon(Icons.favorite_border),
             label: Text('Favorites'),
