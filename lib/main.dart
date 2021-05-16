@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:demo_mobx/views/favorites_page.dart';
-import 'package:demo_mobx/views/home_page.dart';
+import 'package:demo_mobx/views/products_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,10 +20,10 @@ class TestingApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        HomePage.routeName: (context) => HomePage(),
+        ProductsPage.routeName: (context) => ProductsPage(),
         FavoritesPage.routeName: (context) => FavoritesPage(),
       },
-      initialRoute: HomePage.routeName,
+      initialRoute: ProductsPage.routeName,
     );
   }
 }
