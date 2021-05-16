@@ -1,45 +1,10 @@
-// Copyright 2020 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'package:demo_mobx/model/favorites.dart';
-import 'package:demo_mobx/views/favorites_page.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  static String routeName = '/';
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('MobX Sample'),
-        actions: <Widget>[
-          TextButton.icon(
-            style: TextButton.styleFrom(primary: Colors.white),
-            onPressed: () {
-              Navigator.pushNamed(context, FavoritesPage.routeName);
-            },
-            icon: Icon(Icons.favorite_border),
-            label: Text('Favorites'),
-          ),
-        ],
-      ),
-      body: ListView.builder(
-        itemCount: 100,
-        cacheExtent: 20.0,
-        controller: ScrollController(),
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        itemBuilder: (context, index) => ItemTile(index),
-      ),
-    );
-  }
-}
-
-class ItemTile extends StatelessWidget {
+class ProductItemWidget extends StatelessWidget {
   final int itemNo;
 
-  const ItemTile(
+  const ProductItemWidget(
     this.itemNo,
   );
 
