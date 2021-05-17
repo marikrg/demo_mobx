@@ -5,11 +5,11 @@ import 'package:get_it/get_it.dart';
 
 class FavoriteItemWidget extends StatelessWidget {
   final Product product;
-  final Function fnRefresh;
+  final Function fnRefreshFavorites;
 
   const FavoriteItemWidget(
     this.product,
-    this.fnRefresh,
+    this.fnRefreshFavorites,
   );
 
   @override
@@ -18,7 +18,7 @@ class FavoriteItemWidget extends StatelessWidget {
 
     void _removeFavorite(Product product) {
       _productsController.favorites.remove(product);
-      fnRefresh();
+      fnRefreshFavorites();
     }
 
     return Padding(
