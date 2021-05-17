@@ -19,6 +19,16 @@ class _ProductsPageState extends State<ProductsPage> {
   final _productsController = GetIt.instance<ProductsController>();
 
   @override
+  void initState() {
+    super.initState();
+    _init();
+  }
+
+  Future<void> _init() async {
+    await _productsController.loadProducts();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
