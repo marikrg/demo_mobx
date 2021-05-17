@@ -16,9 +16,10 @@ class ProductsPage extends StatefulWidget {
 }
 
 class _ProductsPageState extends State<ProductsPage> {
+  final _productsController = GetIt.instance<ProductsController>();
+
   @override
   Widget build(BuildContext context) {
-    var productController = GetIt.instance<ProductsController>();
     return Scaffold(
       appBar: AppBar(
         title: Text('MobX Sample'),
@@ -35,12 +36,12 @@ class _ProductsPageState extends State<ProductsPage> {
         ],
       ),
       body: ListView.builder(
-        itemCount: productController.productList.length,
+        itemCount: _productsController.productList.length,
         cacheExtent: 20.0,
         controller: ScrollController(),
         padding: const EdgeInsets.symmetric(vertical: 16),
         itemBuilder: (context, index) =>
-            ProductItemWidget(product: productController.productList[index]),
+            ProductItemWidget(product: _productsController.productList[index]),
       ),
     );
   }

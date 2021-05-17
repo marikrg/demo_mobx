@@ -11,10 +11,9 @@ class FavoritesPage extends StatefulWidget {
 }
 
 class _FavoritesPageState extends State<FavoritesPage> {
-  var _favorites = GetIt.instance<ProductsController>().favoritesList;
+  final _productsController = GetIt.instance<ProductsController>();
 
-  void _removeItem(int itemNo) {
-    _favorites.remove(itemNo);
+  void _refresh() {
     setState(() {});
   }
 
@@ -24,12 +23,12 @@ class _FavoritesPageState extends State<FavoritesPage> {
       appBar: AppBar(
         title: Text('Favorites'),
       ),
-      body: _favorites.isNotEmpty
+      body: _productsController.favorites.isNotEmpty
           ? ListView.builder(
-              itemCount: _favorites.length,
+              itemCount: _productsController.favorites.length,
               padding: const EdgeInsets.symmetric(vertical: 16),
-              itemBuilder: (context, index) =>
-                  FavoriteItemWidget(_favorites[index], _removeItem),
+              itemBuilder: (context, index) => FavoriteItemWidget(
+                  _productsController.favorites[index], _refresh),
             )
           : Center(
               child: Text('No favorites added.'),

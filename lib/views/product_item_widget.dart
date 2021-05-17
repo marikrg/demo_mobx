@@ -13,12 +13,12 @@ class ProductItemWidget extends StatefulWidget {
 }
 
 class _ProductItemWidgetState extends State<ProductItemWidget> {
-  var favoritesList = GetIt.instance<ProductsController>().favoritesList;
+  final _productsController = GetIt.instance<ProductsController>();
 
   void _toggleFavorite() {
-    !favoritesList.contains(widget.product.itemNo)
-        ? favoritesList.add(widget.product.itemNo)
-        : favoritesList.remove(widget.product.itemNo);
+    !_productsController.favorites.contains(widget.product)
+        ? _productsController.favorites.add(widget.product)
+        : _productsController.favorites.remove(widget.product);
 
     setState(() {});
   }
@@ -29,8 +29,7 @@ class _ProductItemWidgetState extends State<ProductItemWidget> {
       padding: const EdgeInsets.all(8.0),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor:
-              Colors.primaries[widget.product.itemNo % Colors.primaries.length],
+          backgroundColor: widget.product.color,
         ),
         title: Text(
           'Item ${widget.product.itemNo}',
@@ -38,7 +37,7 @@ class _ProductItemWidgetState extends State<ProductItemWidget> {
         ),
         trailing: IconButton(
             key: Key('icon_${widget.product.itemNo}'),
-            icon: favoritesList.contains(widget.product.itemNo)
+            icon: _productsController.favorites.contains(widget.product)
                 ? Icon(Icons.favorite)
                 : Icon(Icons.favorite_border),
             onPressed: _toggleFavorite),

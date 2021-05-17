@@ -4,5 +4,5 @@ class ProductsController {
   List<Product> productList =
       List<Product>.generate(10, (i) => Product(i, 'Item $i'));
 
-  List<int> favoritesList = [];
+  List<Product> favorites = [];
 }
