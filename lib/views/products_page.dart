@@ -46,7 +46,7 @@ class _ProductsPageState extends State<ProductsPage> {
         ],
       ),
       body: ListView.builder(
-        itemCount: _productsController.productList.length,
+        itemCount: _productsController.productList?.length,
         cacheExtent: 20.0,
         controller: ScrollController(),
         padding: const EdgeInsets.symmetric(vertical: 16),
