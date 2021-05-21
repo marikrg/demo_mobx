@@ -35,12 +35,12 @@ class ProductsPage extends StatelessWidget {
       ),
       body: Observer(
           builder: (_) => ListView.builder(
-                itemCount: _productsController.productList?.length,
+                itemCount: _productsController.productList.length,
                 cacheExtent: 20.0,
                 controller: ScrollController(),
                 padding: const EdgeInsets.symmetric(vertical: 16),
-                itemBuilder: (context, index) => ProductItemWidget(
-                    product: _productsController.productList[index]),
+                itemBuilder: (context, index) =>
+                    ProductItemWidget(_productsController.productList[index]),
               )),
     );
   }

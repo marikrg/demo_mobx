@@ -12,7 +12,7 @@ abstract class _ProductsController with Store {
   ObservableList<Product> favorites = ObservableList();
 
   @computed
-  bool hasFavorites() => favorites.isNotEmpty;
+  bool get hasFavorites => favorites.isNotEmpty;
 
   @action
   Future<void> loadProducts() async {

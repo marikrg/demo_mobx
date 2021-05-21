@@ -7,7 +7,7 @@ import 'package:get_it/get_it.dart';
 class ProductItemWidget extends StatelessWidget {
   final Product product;
 
-  ProductItemWidget({this.product});
+  ProductItemWidget(this.product);
 
   final _productsController = GetIt.instance<ProductsController>();
 

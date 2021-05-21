@@ -15,7 +15,7 @@ class FavoritesPage extends StatelessWidget {
         title: Text('Favorites'),
       ),
       body: Observer(
-          builder: (_) => _productsController.hasFavorites()
+          builder: (_) => _productsController.hasFavorites
               ? ListView.builder(
                   itemCount: _productsController.favorites.length,
                   padding: const EdgeInsets.symmetric(vertical: 16),
