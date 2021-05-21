@@ -13,10 +13,6 @@ class FavoritesPage extends StatefulWidget {
 class _FavoritesPageState extends State<FavoritesPage> {
   final _productsController = GetIt.instance<ProductsController>();
 
-  void _refreshFavorites() {
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +25,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
               padding: const EdgeInsets.symmetric(vertical: 16),
               itemBuilder: (context, index) => FavoriteItemWidget(
                   product: _productsController.favorites[index],
-                  fnRefreshFavorites: _refreshFavorites),
+                  onRemove: () => setState(() {})),
             )
           : Center(
               child: Text('No favorites added.'),
