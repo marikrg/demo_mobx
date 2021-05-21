@@ -8,4 +8,10 @@ class ProductsController {
   Future<void> loadProducts() async {
     productList = await ProductsRepository().listProducts();
   }
+
+  void toggleFavorite(Product product) {
+    !favorites.contains(product)
+        ? favorites.add(product)
+        : favorites.remove(product);
+  }
 }

@@ -16,8 +16,8 @@ class FavoriteItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final _productsController = GetIt.instance<ProductsController>();
 
-    void _removeFavorite(Product product) {
-      _productsController.favorites.remove(product);
+    void _onRemove(Product product) {
+      _productsController.toggleFavorite(product);
       fnRefreshFavorites();
     }
 
@@ -34,7 +34,7 @@ class FavoriteItemWidget extends StatelessWidget {
           trailing: IconButton(
               key: Key('remove_icon_${product.itemNo}'),
               icon: Icon(Icons.close),
-              onPressed: () => _removeFavorite(product))),
+              onPressed: () => _onRemove(product))),
     );
   }
 }

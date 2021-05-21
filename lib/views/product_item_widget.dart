@@ -16,10 +16,7 @@ class _ProductItemWidgetState extends State<ProductItemWidget> {
   final _productsController = GetIt.instance<ProductsController>();
 
   void _toggleFavorite() {
-    !_productsController.favorites.contains(widget.product)
-        ? _productsController.favorites.add(widget.product)
-        : _productsController.favorites.remove(widget.product);
-
+    _productsController.toggleFavorite(widget.product);
     setState(() {});
   }
 
