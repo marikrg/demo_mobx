@@ -1,14 +1,24 @@
 import 'package:demo_mobx/model/product.dart';
 import 'package:demo_mobx/repository/products_repository.dart';
+import 'package:mobx/mobx.dart';
 
-class ProductsController {
-  List<Product> products = [];
-  List<Product> favorites = [];
+part 'products_controller.g.dart';
 
+class ProductsController = _ProductsController with _$ProductsController;
+
+abstract class _ProductsController with Store {
+  ObservableList<Product> products = ObservableList();
+  ObservableList<Product> favorites = ObservableList();
+
+  @computed
+  bool get favIsNotEmpty => favorites.isNotEmpty;
+
+  @action
   Future<void> loadProducts() async {
-    products = await ProductsRepository().listProducts();
+    products = ObservableList.of(await ProductsRepository().listProducts());
   }
 
+  @action
   void toggleFavorite(Product product) {
     !favorites.contains(product)
         ? favorites.add(product)
