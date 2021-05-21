@@ -42,11 +42,11 @@ class _ProductsPageState extends State<ProductsPage> {
         ],
       ),
       body: ListView.builder(
-        itemCount: _productsController.productList?.length,
+        itemCount: _productsController.products.length,
         cacheExtent: 20.0,
         padding: const EdgeInsets.symmetric(vertical: 16),
         itemBuilder: (context, index) =>
-            ProductItemWidget(product: _productsController.productList[index]),
+            ProductItemWidget(product: _productsController.products[index]),
       ),
     );
   }

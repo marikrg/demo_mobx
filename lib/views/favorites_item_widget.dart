@@ -8,10 +8,9 @@ class FavoriteItemWidget extends StatelessWidget {
   final VoidCallback onRemove;
 
   const FavoriteItemWidget({
-    Key key,
-    @required this.product,
-    @required this.onRemove,
-  }) : super(key: key);
+    required this.product,
+    required this.onRemove,
+  });
 
   @override
   Widget build(BuildContext context) {

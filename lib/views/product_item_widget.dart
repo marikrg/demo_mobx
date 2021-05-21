@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 class ProductItemWidget extends StatefulWidget {
   final Product product;
 
-  const ProductItemWidget({Key key, @required this.product}) : super(key: key);
+  const ProductItemWidget({required this.product});
 
   @override
   _ProductItemWidgetState createState() => _ProductItemWidgetState();
