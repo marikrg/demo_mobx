@@ -7,10 +7,11 @@ class FavoriteItemWidget extends StatelessWidget {
   final Product product;
   final Function fnRefreshFavorites;
 
-  const FavoriteItemWidget(
-    this.product,
-    this.fnRefreshFavorites,
-  );
+  const FavoriteItemWidget({
+    Key key,
+    @required this.product,
+    @required this.fnRefreshFavorites,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,7 @@ class Product {
   int itemNo;
   String name;
 
-  Product(this.itemNo, this.name);
+  Product({@required this.itemNo, @required this.name});
 
   Color get color => Colors.primaries[itemNo % Colors.primaries.length];
 }

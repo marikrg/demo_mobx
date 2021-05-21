@@ -28,7 +28,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
               itemCount: _productsController.favorites.length,
               padding: const EdgeInsets.symmetric(vertical: 16),
               itemBuilder: (context, index) => FavoriteItemWidget(
-                  _productsController.favorites[index], _refreshFavorites),
+                  product: _productsController.favorites[index],
+                  fnRefreshFavorites: _refreshFavorites),
             )
           : Center(
               child: Text('No favorites added.'),
