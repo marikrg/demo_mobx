@@ -6,5 +6,5 @@ class Product {
 
   Product(this.itemNo, this.name);
 
-  get color => Colors.primaries[itemNo % Colors.primaries.length];
+  Color get color => Colors.primaries[itemNo % Colors.primaries.length];
 }
