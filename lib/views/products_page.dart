@@ -34,7 +34,7 @@ class _ProductsPageState extends State<ProductsPage> {
             style: TextButton.styleFrom(primary: Colors.white),
             onPressed: () {
               Navigator.pushNamed(context, FavoritesPage.routeName)
-                  .then((value) => setState(() => {}));
+                  .then((_) => setState(() {}));
             },
             icon: Icon(Icons.favorite_border),
             label: Text('Favorites'),
