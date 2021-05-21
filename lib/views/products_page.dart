@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 class ProductsPage extends StatefulWidget {
-  static String routeName = '/products';
+  static final String routeName = '/products';
 
   @override
   _ProductsPageState createState() => _ProductsPageState();
