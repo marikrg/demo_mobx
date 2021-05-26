@@ -1,23 +1,19 @@
 import 'package:demo_mobx/controller/products_controller.dart';
-import 'package:demo_mobx/model/product.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 
-class ProductItemWidget extends StatefulWidget {
+import '../model/product.dart';
+
+class ProductItemWidget extends StatelessWidget {
   final Product product;
 
-  const ProductItemWidget({required this.product});
+  ProductItemWidget({required this.product});
 
-  @override
-  _ProductItemWidgetState createState() => _ProductItemWidgetState();
-}
-
-class _ProductItemWidgetState extends State<ProductItemWidget> {
   final _productsController = GetIt.instance<ProductsController>();
 
   void _toggleFavorite() {
-    _productsController.toggleFavorite(widget.product);
-    setState(() {});
+    _productsController.toggleFavorite(product);
   }
 
   @override
@@ -26,17 +22,19 @@ class _ProductItemWidgetState extends State<ProductItemWidget> {
       padding: const EdgeInsets.all(8.0),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: widget.product.color,
+          backgroundColor: product.color,
         ),
         title: Text(
-          'Item ${widget.product.itemNo}',
-          key: Key('text_${widget.product.itemNo}'),
+          'Item ${product.itemNo}',
+          key: Key('text_${product.itemNo}'),
         ),
         trailing: IconButton(
-            key: Key('icon_${widget.product.itemNo}'),
-            icon: _productsController.favorites.contains(widget.product)
+            key: Key('icon_${product.itemNo}'),
+            icon:
+              Observer(builder: (_) =>
+            _productsController.favorites.contains(product)
                 ? Icon(Icons.favorite)
-                : Icon(Icons.favorite_border),
+                : Icon(Icons.favorite_border)),
             onPressed: _toggleFavorite),
       ),
     );
