@@ -22,6 +22,7 @@ class _ProductsPageState extends State<ProductsPage> {
 
   Future<void> _init() async {
     await _productsController.loadProducts();
+    setState(() {});
   }
 
   @override
