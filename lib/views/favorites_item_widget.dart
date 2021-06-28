@@ -5,21 +5,12 @@ import 'package:get_it/get_it.dart';
 
 class FavoriteItemWidget extends StatelessWidget {
   final Product product;
-  final VoidCallback onRemove;
 
-  const FavoriteItemWidget({
-    required this.product,
-    required this.onRemove,
-  });
+  const FavoriteItemWidget({required this.product});
 
   @override
   Widget build(BuildContext context) {
     final _productsController = GetIt.instance<ProductsController>();
-
-    void _onRemove(Product product) {
-      _productsController.toggleFavorite(product);
-      onRemove();
-    }
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -34,7 +25,7 @@ class FavoriteItemWidget extends StatelessWidget {
           trailing: IconButton(
               key: Key('remove_icon_${product.itemNo}'),
               icon: Icon(Icons.close),
-              onPressed: () => _onRemove(product))),
+              onPressed: () => _productsController.toggleFavorite(product))),
     );
   }
 }

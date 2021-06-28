@@ -1,16 +1,11 @@
 import 'package:demo_mobx/controller/products_controller.dart';
 import 'package:demo_mobx/views/favorites_item_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 
-class FavoritesPage extends StatefulWidget {
+class FavoritesPage extends StatelessWidget {
   static final String routeName = '/favorites';
-
-  @override
-  _FavoritesPageState createState() => _FavoritesPageState();
-}
-
-class _FavoritesPageState extends State<FavoritesPage> {
   final _productsController = GetIt.instance<ProductsController>();
 
   @override
@@ -19,17 +14,17 @@ class _FavoritesPageState extends State<FavoritesPage> {
       appBar: AppBar(
         title: Text('Favorites'),
       ),
-      body: _productsController.favorites.isNotEmpty
-          ? ListView.builder(
-              itemCount: _productsController.favorites.length,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              itemBuilder: (context, index) => FavoriteItemWidget(
-                  product: _productsController.favorites[index],
-                  onRemove: () => setState(() {})),
-            )
-          : Center(
-              child: Text('No favorites added.'),
-            ),
+      body: Observer(
+          builder: (_) => _productsController.hasFavorites
+              ? ListView.builder(
+                  itemCount: _productsController.favorites.length,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  itemBuilder: (context, index) => FavoriteItemWidget(
+                      product: _productsController.favorites[index]),
+                )
+              : Center(
+                  child: Text('No favorites added.'),
+                )),
     );
   }
 }
